@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Calculator from './components/Calculator';
+import Timer from './components/Timer';
 
 class App extends Component {
   state = {};
 
-  //initialize state with empty values, then fill them on componentWillMount?
   componentWillMount() {
     this.setState({
       calcVals: {
@@ -13,9 +13,12 @@ class App extends Component {
         ratio: 16,
         water: 384,
         total: 338
+      },
+      units: {
+        ml: true,
+        oz: false
       }
     });
-
   };
 
   updateVals = (newVals) => {
@@ -25,6 +28,27 @@ class App extends Component {
     calcVals = { ...newVals };
     //update state
     this.setState({ calcVals });
+  };
+
+  convertUnit = (unit) => {
+    //copy both relevant parts of state
+    let units = { ...this.state.units };
+    let calcVals = { ...this.state.calcVals };
+
+    if(unit === 'oz') {
+      //toggle the selected units
+      units = { ml: false, oz: true};
+      //convert the ml total to oz
+      calcVals.total = (calcVals.total * 0.033814);
+      //set them to state
+      this.setState({ calcVals, units });
+    } else if(unit === 'ml') {
+      units = { ml: true, oz: false};
+      calcVals.total = (calcVals.total / 0.033814);
+      this.setState({ calcVals, units });
+    } else {
+      throw Error('Something odd happened with the units');
+    };
   };
 
   render() {
@@ -38,7 +62,11 @@ class App extends Component {
             water={this.state.calcVals.water}
             total={this.state.calcVals.total}
             updateVals={this.updateVals}
+            ml={this.state.units.ml}
+            oz={this.state.units.oz}
+            convertUnit={this.convertUnit}
           />
+          <Timer />
         </div>
       </div>
     );
