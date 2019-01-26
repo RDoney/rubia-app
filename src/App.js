@@ -24,6 +24,8 @@ class App extends Component {
   updateVals = (newVals) => {
     //copy state
     let calcVals = { ...this.state.calcVals };
+
+    console.log(Object.keys(newVals));
     //set new values
     calcVals = { ...newVals };
     //update state
@@ -39,13 +41,16 @@ class App extends Component {
       //toggle the selected units
       units = { ml: false, oz: true};
       //convert the ml total to oz
-      calcVals.total = (calcVals.total * 0.033814);
+      calcVals.total = (calcVals.total * 0.033814).toFixed(1);;
       //set them to state
       this.setState({ calcVals, units });
     } else if(unit === 'ml') {
+
       units = { ml: true, oz: false};
-      calcVals.total = (calcVals.total / 0.033814);
+      calcVals.total = (calcVals.total / 0.033814).toFixed(1);;
+      
       this.setState({ calcVals, units });
+
     } else {
       throw Error('Something odd happened with the units');
     };

@@ -6,18 +6,23 @@ class Calculator extends React.Component {
     //make sure to parseFloat the changed values
     //round values to single decimal
 
+    // calcDose = (water, ratio) => water / ratio;
+    // calcRatio = (water, dose) => water / dose;
+    // calcWater = (ratio, dose) => ratio * dose;
+    // calcTotal = (water) => water * .8812;
+
     newDose = (e) => {
         //check if oz is selected, convert it if so
         if(this.props.oz === true){
             //convert to ml
-            let total = (this.props.total / 0.033814);
+            let total = (this.props.total / 0.033814).toFixed(1);
             //calculate the new values
             const dose = e.currentTarget.value;
             const ratio = this.props.ratio;
-            const water = (ratio * dose);
-            total = (water * .8812);
+            const water = (ratio * dose).toFixed(1);;
+            total = (water * .8812).toFixed(1);;
             //convert back to oz
-            total = (total * 0.033814);
+            total = (total * 0.033814).toFixed(1);;
             //set the calculated values
             const newVals = {
                 dose: dose,
@@ -31,8 +36,8 @@ class Calculator extends React.Component {
             //calculate the new values
             const dose = e.currentTarget.value;
             const ratio = this.props.ratio;
-            const water = (ratio * dose);
-            const total = (water * .8812);
+            const water = (ratio * dose).toFixed(1);
+            const total = (water * .8812).toFixed(1);
             //set the calculated values
             const newVals = {
                 dose: dose,
@@ -42,19 +47,19 @@ class Calculator extends React.Component {
             };
             //send it to the updateVals method
         this.props.updateVals(newVals);
-        }
+        };
     };
     newRatio = (e) => {
         if(this.props.oz === true) {
             //convert
-            let total = (this.props.total / 0.033814);
+            let total = (this.props.total / 0.033814).toFixed(1);;
             //calculate
             const ratio = e.currentTarget.value;
             const dose = this.props.dose;
-            const water = (ratio * dose);
-            total = (water * .8812);
+            const water = (ratio * dose).toFixed(1);;
+            total = (water * .8812).toFixed(1);;
             //convert back
-            total = (total * 0.033814);
+            total = (total * 0.033814).toFixed(1);;
 
             const newVals = {
                 dose: dose,
@@ -66,8 +71,8 @@ class Calculator extends React.Component {
         } else {
             const ratio = e.currentTarget.value;
             const dose = this.props.dose;
-            const water = (ratio * dose);
-            const total = (water * .8812);
+            const water = (ratio * dose).toFixed(1);;
+            const total = (water * .8812).toFixed(1);;
             const newVals = {
                 dose: dose,
                 ratio: ratio,
@@ -79,15 +84,12 @@ class Calculator extends React.Component {
     };
     newWater = (e) => {
         if(this.props.oz === true) {
-            //convert
-            let total = (this.props.total / 0.033814);
-            //calculate
+            let total = (this.props.total / 0.033814).toFixed(1);;
             const water = e.currentTarget.value;
             const ratio = this.props.ratio;
-            const dose = (water / ratio);
-            total = (water * .8812);
-            //convert back
-            total = (total * 0.033814);
+            const dose = (water / ratio).toFixed(1);;
+            total = (water * .8812).toFixed(1);;
+            total = (total * 0.033814).toFixed(1);;
 
             const newVals = {
                 dose: dose,
@@ -100,8 +102,8 @@ class Calculator extends React.Component {
         } else {
             const water = e.currentTarget.value;
             const ratio = this.props.ratio;
-            const dose = (water / ratio);
-            const total = (water * .8812);
+            const dose = (water / ratio).toFixed(1);;
+            const total = (water * .8812).toFixed(1);;
             const newVals = {
                 dose: dose,
                 ratio: ratio,
@@ -114,15 +116,11 @@ class Calculator extends React.Component {
     newTotal = (e) => {
         if(this.props.oz === true) {
             let total = e.currentTarget.value;
-            //convert
-            total = (total / 0.033814);
-            //calculate the rest
+            total = (total / 0.033814).toFixed(1);;
             const ratio = this.props.ratio;
-            const water = (total / .8812);
+            const water = (total / .8812).toFixed(1);;
             const dose = (water / ratio);
-            //convert back
-            total = (total * 0.033814);
-            //assign to new vals
+            total = (total * 0.033814).toFixed(1);;
             const newVals = {
                 dose: dose,
                 ratio: ratio,
@@ -133,15 +131,15 @@ class Calculator extends React.Component {
         } else {
             const total = e.currentTarget.value;
             const ratio = this.props.ratio;
-            const water = (total / .8812);
-            const dose = (water / ratio);
+            const water = (total / .8812).toFixed(1);;
+            const dose = (water / ratio).toFixed(1);;
             const newVals = {
                 dose: dose,
                 ratio: ratio,
                 water: water,
                 total: total
             };
-            this.props.updateVals(newVals);
+            this.props.updateVals(newVals).toFixed(1);;
         };
     };
     newUnit = (e) => {
